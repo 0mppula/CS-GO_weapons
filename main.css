@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Root Variables */
+:root {
+	--mainBlack: #1b1b1b;
+	--mainRed: #ff2941;
+	--mainGold: #feff38;
+	--mainGreen: #319938;
+}
+/* End Root Variables */
+
+/* Master Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-image: radial-gradient(#eee, #aaa);
+	height: 100vh;
+	font-family: 'Press Start 2P', cursive;
+}
+
+button {
+	outline: none;
+	border: none;
+	font-family: 'Press Start 2P', cursive;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.container {
+	min-height: 100vh;
+	width: min(97vw, 850px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	position: relative;
+}
+/* End Master Styles */
+
+/* Weapon Wrapper */
+.weapon-wrapper {
+	height: max(35vh, 400px);
+}
+
+.weapon-title {
+	font-size: 3rem;
+	letter-spacing: 0.6rem;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 6rem;
+	margin-top: 1rem;
+}
+
+.weapon-wrapper img {
+	transform: scale(0.85);
+}
+
+/* Select */
+.select-wrapper {
+	font-size: 3.5rem;
+	color: var(--mainBlack);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	bottom: 48.5%;
+	left: 0;
+	transition: 0.3s ease;
+	z-index: 100;
+}
+
+.select-left {
+	transition: 0.3s ease;
+	filter: opacity(0.25);
+	cursor: pointer;
+}
+
+.select-left:hover,
+.select-left:active {
+	filter: opacity(0.8);
+	transform: scale(1.1);
+}
+
+.select-right {
+	transition: 0.3s ease;
+	filter: opacity(0.25);
+	cursor: pointer;
+}
+
+.select-right:hover,
+.select-right:active {
+	filter: opacity(0.8);
+	transform: scale(1.1);
+}
+/* End Select */
+/* End Weapon Wrapper */
+
+/* IO */
+#output {
+	font-size: 2.5rem;
+	text-align: center;
+	color: var(--mainBlack);
+	background-color: var(--mainGold);
+	width: 100%;
+	border-radius: 3px;
+	margin: 0.8rem;
+	padding: 0.85rem 0.5rem 0.5rem;
+}
+
+#input {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.btn {
+	text-transform: capitalize;
+	color: var(--mainBlack);
+	background-color: var(--mainRed);
+	font-size: clamp(1.5rem, 1.9vw, 2rem);
+	text-align: center;
+	width: 32%;
+	padding: 0.8rem 0.5rem 0.5rem;
+	border-radius: 3px;
+	transition: 0.3s ease;
+}
+
+.btn:hover {
+	transform: scale(1.05);
+	filter: opacity(0.95);
+}
+
+.btn:active {
+	transform: scale(1.05);
+	filter: opacity(0.95);
+}
+
+.ammo-empty {
+	color: var(--mainRed) !important;
+	transition: 0.1s ease;
+}
+
+.ammo-reloaded {
+	color: var(--mainGreen) !important;
+	transition: 0.1s ease;
+}
+
+/* Animations */
+.select-weapon {
+	animation: select-weapon 0.3s ease;
+}
+
+.shake {
+	animation: shake 0.5s ease;
+}
+
+.shooting {
+	animation: shoot 0.05s;
+}
+/* End Animations */
+/* End IO */
+
+/* Keyframes */
+@keyframes select-weapon {
+	0% {
+		transform: scale(0.75);
+	}
+	100% {
+		transform: scale(0.85);
+	}
+}
+
+@keyframes shoot {
+	0%,
+	100% {
+		transform: scale(0.85);
+	}
+
+	50% {
+		transform: scale(0.85) rotate(10deg) translatex(10px) translateY(15px);
+	}
+}
+
+@keyframes shake {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+/* End Keyframes */
+
+/* Media Query for Mobile */
+@media only screen and (max-width: 480px) {
+	.container {
+		min-height: 100vh;
+		width: 97vw;
+	}
+
+	.weapon-wrapper {
+		position: relative;
+		height: 25vh !important;
+	}
+
+	.weapon-title {
+		font-size: 1.65rem !important;
+		letter-spacing: 0.2rem !important;
+		margin-bottom: 3rem !important;
+		margin-top: 1rem;
+	}
+
+	.select-wrapper {
+		font-size: 2.25rem !important;
+		position: absolute;
+		bottom: 23% !important;
+		left: 0;
+		transition: 0.3s ease;
+		z-index: 100;
+	}
+
+	.select-left:hover {
+		filter: opacity(0.25);
+		transform: scale(1);
+	}
+	.select-left:active {
+		transform: scale(1.2);
+	}
+	.select-right:hover {
+		filter: opacity(0.25);
+		transform: scale(1);
+	}
+	.select-right:active {
+		transform: scale(1.2);
+	}
+
+	#output {
+		font-size: 1.75rem !important;
+		padding: 0.7rem 0.5rem 0.3rem;
+		margin: 0.5rem !important;
+	}
+
+	#input {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+		grid-template-rows: 1fr;
+		gap: 0.25rem !important;
+		width: 100%;
+	}
+
+	.reload {
+		grid-row: 2;
+		grid-column: span 2/3;
+	}
+
+	.btn {
+		text-transform: capitalize;
+		color: var(--mainBlack);
+		background-color: var(--mainRed);
+		font-size: 1.25rem !important;
+		width: 100% !important;
+		text-align: center;
+		padding: 1rem 0.5rem 0.5rem;
+		border-radius: 3px;
+		transition: 0.3s ease;
+	}
+
+	.btn:hover {
+		transform: scale(1);
+		filter: opacity(0.95);
+	}
+	.btn:active {
+		color: white;
+		transform: scale(1);
+		filter: opacity(0.95);
+	}
+}
+/* End Media Query for Mobile */
+
+/* Media Query for Tablet */
+@media only screen and (max-width: 800px) {
+	.container {
+		min-height: 100vh;
+		width: 97vw;
+	}
+
+	.weapon-wrapper {
+		position: relative;
+		height: 35vh;
+	}
+
+	.weapon-title {
+		font-size: 3rem;
+		letter-spacing: 0.4rem;
+		margin-bottom: 6rem;
+		margin-top: 1rem;
+	}
+
+	.select-wrapper {
+		font-size: 3.5rem;
+		position: absolute;
+		bottom: 20%;
+		left: 0;
+		transition: 0.3s ease;
+		z-index: 100;
+	}
+
+	.select-left:hover {
+		filter: opacity(0.25);
+	}
+	.select-left:active {
+		transform: scale(1.2);
+	}
+	.select-right:hover {
+		filter: opacity(0.25);
+	}
+	.select-right:active {
+		transform: scale(1.2);
+	}
+
+	#output {
+		font-size: 2rem;
+		padding: 1.1rem 0.5rem 0.85rem;
+		margin: 3rem 0.5rem 0.75rem;
+	}
+
+	#input {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 1fr;
+		gap: 0.4rem;
+		width: 100%;
+	}
+
+	.btn {
+		font-size: clamp(1.25rem, 4vw, 2rem);
+		text-align: center;
+		padding: 1rem 0.5rem 0.5rem;
+		width: 100% !important;
+	}
+
+	.reload {
+		grid-row: 2;
+		grid-column: span 2/3;
+	}
+
+	.btn:hover {
+		transform: scale(1);
+		filter: opacity(0.95);
+	}
+	.btn:active {
+		color: white;
+		transform: scale(1);
+		filter: opacity(0.95);
+	}
+}
+/* End Media Query for Tablet */
