@@ -5,7 +5,7 @@ const appLoaded = () => {
 	output.innerHTML = currWeapon.capacity;
 	weaponTitle.innerHTML = currWeapon.name;
 	weaponContainer.setAttribute('src', currWeapon.images.inActive);
-	shootAll(); /* silently shoot all to init app */
+	shootAll(); /* silently shoot all */
 };
 
 // Weapons Object
@@ -41,16 +41,17 @@ class Weapon {
 		drawSound.play();
 		drawSound.volume = volume;
 	}
-	preloadAudio() {
-		let fireSound = new Audio(this.audio.fire);
-		// fireSound.play();
-		fireSound.volume = 0;
-		let reloadSound = new Audio(this.audio.fill);
-		// reloadSound.play();
-		reloadSound.volume = 0;
-		let drawSound = new Audio(this.audio.draw);
-		// drawSound.play();
-		drawSound.volume = 0;
+	preloadData() {
+		let fireSound = new Audio();
+		fireSound.src = this.audio.fire;
+		let reloadSound = new Audio();
+		reloadSound.src = this.audio.fill;
+		let drawSound = new Audio();
+		drawSound.src = this.audio.draw;
+		let imgInactive = new Image();
+		imgInactive.sec = this.inActive;
+		let imgActive = new Image();
+		imgActive.sec = this.inActive;
 	}
 }
 // Weapon Instantiations
@@ -347,6 +348,6 @@ function reload() {
 /* Shoot all silently */
 const shootAll = () => {
 	allWeapons.forEach((weapon) => {
-		weapon.preloadAudio();
+		weapon.preloadData();
 	});
 };
