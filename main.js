@@ -14,7 +14,7 @@ class Weapon {
 		this.name = name;
 		this.capacity = capacity;
 		this.ammo = ammo;
-		this.firerate = firerate; /* time in ms between each shot */
+		this.firerate = firerate * 2; /* time in ms between each shot */
 		this.images = {
 			inActive: inActive,
 			active: active,
