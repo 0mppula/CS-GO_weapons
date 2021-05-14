@@ -1,6 +1,5 @@
 // App Initial State
 const appLoaded = () => {
-	console.log('App Loaded!');
 	currWeapon = allWeapons[0];
 	output.innerHTML = currWeapon.capacity;
 	weaponTitle.innerHTML = currWeapon.name;
@@ -103,7 +102,7 @@ const weapon5 = new Weapon(
 	'AWP',
 	10,
 	10,
-	300,
+	225,
 	'images/awp1.png',
 	'images/shooting_awp1.png',
 	'audio/awp_fire.wav',
@@ -305,7 +304,6 @@ function shootOne() {
 
 // Shoot Multiple Times
 function shootMulti() {
-	let i = 0;
 	let shots = 0;
 	if (currWeapon.ammo > 0 && isShooting === false) {
 		for (i = 0; i < 10; i++) {
