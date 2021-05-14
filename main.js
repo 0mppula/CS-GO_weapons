@@ -183,7 +183,18 @@ const weapon10 = new Weapon(
 // End Weapon Instantiations
 
 // All Weapons Array
-const allWeapons = [weapon1, weapon2, weapon3, weapon4, weapon5, weapon6, weapon7, weapon8, weapon9, weapon10];
+const allWeapons = [
+	weapon1,
+	weapon2,
+	weapon3,
+	weapon4,
+	weapon5,
+	weapon6,
+	weapon7,
+	weapon8,
+	weapon9,
+	weapon10,
+];
 
 // Variables
 const leftBtn = document.querySelector('.select-left');
@@ -209,7 +220,7 @@ window.addEventListener('load', appLoaded);
 // Select Current Weapon
 // Right Direction
 function selectLeft() {
-	if (isShooting === false) {
+	if (!isShooting) {
 		shootAll();
 		if (index > 0) {
 			/* 1 */
@@ -228,7 +239,7 @@ function selectLeft() {
 
 // Left Direction
 function selectRight() {
-	if (isShooting === false) {
+	if (!isShooting) {
 		shootAll();
 		if (index < allWeapons.length - 1) {
 			/* 1 */
@@ -249,7 +260,10 @@ function selectRight() {
 function appendData() {
 	currWeapon = allWeapons[index]; /* Keeps track of current weapon */
 	// currWeapon.loadSFX();
-	weaponContainer.setAttribute('src', currWeapon.images.inActive); /* returns non shooting image */
+	weaponContainer.setAttribute(
+		'src',
+		currWeapon.images.inActive
+	); /* returns non shooting image */
 	weaponContainer.classList.toggle('select-weapon'); /* select animation */
 	weaponTitle.innerHTML = currWeapon.name; /* returns weapon title */
 	output.innerHTML = currWeapon.ammo; /* returns weapon ammo capacity title */
@@ -294,7 +308,7 @@ function shoot() {
 
 // Shoot Once
 function shootOne() {
-	if (isShooting === false) {
+	if (!isShooting) {
 		shoot();
 	} else {
 		singleBtn.classList.toggle('shake');
@@ -329,7 +343,7 @@ function shootMulti() {
 
 // Reload Weapon Function
 function reload() {
-	if (isShooting === false) {
+	if (!isShooting) {
 		currWeapon.ammo = currWeapon.capacity;
 		output.innerHTML = currWeapon.ammo;
 		output.classList.toggle('ammo-reloaded');
