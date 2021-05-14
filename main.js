@@ -5,16 +5,8 @@ const appLoaded = () => {
 	output.innerHTML = currWeapon.capacity;
 	weaponTitle.innerHTML = currWeapon.name;
 	weaponContainer.setAttribute('src', currWeapon.images.inActive);
-	fireSound = new Audio(currWeapon.audio.fire);
-	reloadSound = new Audio(currWeapon.audio.fill);
-	drawSound = new Audio(currWeapon.audio.draw);
 	shootAll(); /* silently shoot all to init app */
 };
-
-let fireSound;
-let reloadSound;
-let drawSound;
-// let specialSound;
 
 // Weapons Object
 class Weapon {
@@ -35,28 +27,28 @@ class Weapon {
 		};
 	}
 	fireSFX() {
-		fireSound = new Audio(this.audio.fire);
+		let fireSound = new Audio(this.audio.fire);
 		fireSound.play();
 		fireSound.volume = 0.05;
 	}
 	reloadSFX() {
-		reloadSound = new Audio(this.audio.fill);
+		let reloadSound = new Audio(this.audio.fill);
 		reloadSound.play();
 		reloadSound.volume = 0.1;
 	}
 	drawSFX() {
-		drawSound = new Audio(this.audio.draw);
+		let drawSound = new Audio(this.audio.draw);
 		drawSound.play();
 		drawSound.volume = 0.1;
 	}
 	preloadAudio() {
-		fireSound = new Audio(this.audio.fire);
+		let fireSound = new Audio(this.audio.fire);
 		// fireSound.play();
 		fireSound.volume = 0;
-		reloadSound = new Audio(this.audio.fill);
+		let reloadSound = new Audio(this.audio.fill);
 		// reloadSound.play();
 		reloadSound.volume = 0;
-		drawSound = new Audio(this.audio.draw);
+		let drawSound = new Audio(this.audio.draw);
 		// drawSound.play();
 		drawSound.volume = 0;
 	}
@@ -361,9 +353,8 @@ function reload() {
 }
 
 /* Shoot all silently */
-let i = 0;
 const shootAll = () => {
-	for (i = 0; i < allWeapons.length; i++) {
-		allWeapons[i].preloadAudio();
-	}
+	allWeapons.forEach((weapon) => {
+		weapon.preloadAudio();
+	});
 };
