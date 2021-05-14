@@ -26,20 +26,20 @@ class Weapon {
 			special: special,
 		};
 	}
-	fireSFX() {
+	fireSFX(volume) {
 		let fireSound = new Audio(this.audio.fire);
 		fireSound.play();
-		fireSound.volume = 0.05;
+		fireSound.volume = volume;
 	}
-	reloadSFX() {
+	reloadSFX(volume) {
 		let reloadSound = new Audio(this.audio.fill);
 		reloadSound.play();
-		reloadSound.volume = 0.1;
+		reloadSound.volume = volume;
 	}
-	drawSFX() {
+	drawSFX(volume) {
 		let drawSound = new Audio(this.audio.draw);
 		drawSound.play();
-		drawSound.volume = 0.1;
+		drawSound.volume = volume;
 	}
 	preloadAudio() {
 		let fireSound = new Audio(this.audio.fire);
@@ -51,13 +51,6 @@ class Weapon {
 		let drawSound = new Audio(this.audio.draw);
 		// drawSound.play();
 		drawSound.volume = 0;
-	}
-	loadSFX() {
-		/* loads new audio for weapon */
-		drawSound.load(currWeapon.audio.fire);
-		drawSound.load(currWeapon.audio.fill);
-		drawSound.load(currWeapon.audio.draw);
-		console.log(drawSound);
 	}
 }
 // Weapon Instantiations
@@ -251,7 +244,6 @@ function selectRight() {
 // Selector Logic
 function appendData() {
 	currWeapon = allWeapons[index]; /* Keeps track of current weapon */
-	// currWeapon.loadSFX();
 	weaponContainer.setAttribute(
 		'src',
 		currWeapon.images.inActive
@@ -263,7 +255,7 @@ function appendData() {
 		weaponContainer.classList.toggle('select-weapon'); /* remove select animation */
 	}, 300);
 	/* Audio */
-	currWeapon.drawSFX();
+	currWeapon.drawSFX(0.1);
 }
 
 // Shooting Logic
@@ -278,7 +270,7 @@ function shoot() {
 			setTimeout(() => {
 				weaponContainer.setAttribute('src', currWeapon.images.inActive);
 				weaponContainer.classList.toggle('shooting');
-				currWeapon.fireSFX();
+				currWeapon.fireSFX(0.05);
 			}, 100);
 			/* condition for weapon with fire rate < 100ms (fast)*/
 		} else if (currWeapon.firerate <= 100) {
@@ -286,7 +278,7 @@ function shoot() {
 				weaponContainer.setAttribute('src', currWeapon.images.inActive); // sets img src value (not shooting)
 				weaponContainer.classList.toggle('shooting');
 				/* Audio */
-				currWeapon.fireSFX();
+				currWeapon.fireSFX(0.05);
 			}, currWeapon.firerate - 50);
 		}
 	} else {
@@ -340,7 +332,7 @@ function reload() {
 		output.innerHTML = currWeapon.ammo;
 		output.classList.toggle('ammo-reloaded');
 		/* Audio */
-		currWeapon.reloadSFX();
+		currWeapon.reloadSFX(0.1);
 		setTimeout(() => {
 			output.classList.toggle('ammo-reloaded');
 		}, 200);
