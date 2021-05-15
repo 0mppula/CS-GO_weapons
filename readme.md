@@ -6,7 +6,7 @@ This simple [web application](https://csgo-weapons.netlify.app/) allows the user
 
 ## Technologies
 
-This web application is coded with vanilla JavaScript, coupled with HTML5 and CSS. The weapons are simply `.png` images, and the audio files are short `.wav` files. My intentions were to implement the functionality of the weapons in JavaScript `classes`, I believe, that I achieved that task relatively well, considering my not so <em>senior</em> coding skills.
+This web application is coded with vanilla JavaScript, coupled with HTML5 and CSS. The weapons are simply `.png` images, and the audio files are short `.wav` files. My intentions were to implement the functionality of the weapons with JavaScript `classes`, I believe, that I achieved that task relatively well, considering my not so <em>senior</em> coding skills.
 
 ## Bugs
 
