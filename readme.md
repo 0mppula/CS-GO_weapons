@@ -12,8 +12,6 @@ This simple web application allows the user to cycle through a list of weapons f
 
 This web application is coded with vanilla JavaScript, coupled with HTML5 and CSS. The weapons are simply `.png` images, and the audio files are short `.wav` files. My intentions were to implement the functionality of the weapons in JavaScript `classes`, I believe, that I achieved that task relatively well, considering my not so <em>senior</em> skills.
 
-#
-
 ### Bugs
 
 There are a few bugs in this project, and **any** help or contributions are **HUGELY** appreciated!! 🙂
