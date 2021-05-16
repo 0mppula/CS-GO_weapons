@@ -131,6 +131,7 @@ img {
 	padding: 0.8rem 0.5rem 0.5rem;
 	border-radius: 3px;
 	transition: 0.3s ease;
+	cursor: pointer;
 }
 
 .btn:hover {

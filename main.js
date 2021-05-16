@@ -228,15 +228,14 @@ function selectRight() {
 
 // Selector Logic
 function appendData(currWeapon) {
-	updateWeapon(currWeapon.images.inActive); /* returns non shooting image */
+	updateWeapon(currWeapon.images.inActive);
 	updateMultiBtn();
-	toggleClass(weaponContainer, 'select-weapon'); /* select animation */
-	updateWeaponTitle(currWeapon.name); /* returns weapon title */
-	updateAmmo(currWeapon.ammo); /* returns weapon ammo capacity title */
+	toggleClass(weaponContainer, 'select-weapon'); /* draw animation */
+	updateWeaponTitle(currWeapon.name);
+	updateAmmo(currWeapon.ammo);
 	setTimeout(() => {
-		toggleClass(weaponContainer, 'select-weapon'); /* remove select animation */
+		toggleClass(weaponContainer, 'select-weapon'); /* remove draw animation */
 	}, 300);
-	/* Audio */
 	currWeapon.draw(0.1);
 }
 
@@ -265,10 +264,7 @@ function shoot() {
 		}
 	} else {
 		currWeapon.ammo = 0;
-		toggleClass(output, 'ammo-empty');
-		setTimeout(() => {
-			toggleClass(output, 'ammo-empty');
-		}, 200);
+		toggleNoAmmo();
 	}
 }
 
@@ -297,11 +293,7 @@ function shootMulti() {
 			}, currWeapon.firerate * i);
 		}
 	} else {
-		toggleClass(output, 'ammo-empty');
-
-		setTimeout(() => {
-			toggleClass(output, 'ammo-empty');
-		}, 200);
+		toggleNoAmmo();
 	}
 }
 
@@ -333,6 +325,13 @@ function toggleShake(el) {
 	setTimeout(() => {
 		el.classList.toggle('shake');
 	}, 500);
+}
+
+function toggleNoAmmo() {
+	output.classList.toggle('ammo-empty');
+	setTimeout(() => {
+		output.classList.toggle('ammo-empty');
+	}, 200);
 }
 
 function toggleClass(el, className) {
