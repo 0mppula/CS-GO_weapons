@@ -242,8 +242,8 @@ function selectRight() {
 
 // Selector Logic
 function appendData(currWeapon) {
-	updateWeapon(currWeapon.images.inActive);
-	/* returns non shooting image */
+	updateWeapon(currWeapon.images.inActive); /* returns non shooting image */
+	updateMultiBtn();
 	toggleClass(weaponContainer, 'select-weapon'); /* select animation */
 	updateWeaponTitle(currWeapon.name); /* returns weapon title */
 	updateAmmo(currWeapon.ammo); /* returns weapon ammo capacity title */
@@ -367,4 +367,12 @@ function updateAmmo(ammo) {
 function updateWeaponTitle(newTitle) {
 	let weaponTitle = document.querySelector('.weapon-title');
 	weaponTitle.innerHTML = newTitle;
+}
+
+function updateMultiBtn() {
+	if (currWeapon.capacity < 10) {
+		multiBtn.innerHTML = `shoot ${currWeapon.capacity}`;
+	} else {
+		multiBtn.innerHTML = `shoot ${10}`;
+	}
 }
