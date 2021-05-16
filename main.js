@@ -208,12 +208,12 @@ function selectLeft() {
 	if (!isShooting) {
 		shootAll();
 		if (index > 0) {
-			/* 1 */
 			index--;
 		} else {
 			index = allWeapons.length - 1;
 		}
-		appendData();
+		currWeapon = allWeapons[index];
+		appendData(currWeapon);
 	} else {
 		leftBtn.classList.toggle('shake');
 		setTimeout(() => {
@@ -227,12 +227,12 @@ function selectRight() {
 	if (!isShooting) {
 		shootAll();
 		if (index < allWeapons.length - 1) {
-			/* 1 */
 			index++;
 		} else {
 			index = 0;
 		}
-		appendData();
+		currWeapon = allWeapons[index];
+		appendData(currWeapon);
 	} else {
 		rightBtn.classList.toggle('shake');
 		setTimeout(() => {
@@ -242,8 +242,7 @@ function selectRight() {
 }
 
 // Selector Logic
-function appendData() {
-	currWeapon = allWeapons[index]; /* Keeps track of current weapon */
+function appendData(currWeapon) {
 	weaponContainer.setAttribute(
 		'src',
 		currWeapon.images.inActive
@@ -306,12 +305,13 @@ function shootOne() {
 function shootMulti() {
 	let shots = 0;
 	if (currWeapon.ammo > 0 && isShooting === false) {
-		for (i = 0; i < 10; i++) {
+		let ammo = currWeapon.ammo > 10 ? 10 : currWeapon.ammo;
+		for (i = 0; i < ammo; i++) {
 			isShooting = true;
 			setTimeout(() => {
 				shoot();
 				shots++;
-				if (shots === 10) {
+				if (shots === ammo) {
 					isShooting = false;
 				}
 			}, currWeapon.firerate * i);
