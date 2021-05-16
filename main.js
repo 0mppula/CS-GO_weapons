@@ -215,9 +215,6 @@ function selectLeft() {
 		appendData(currWeapon);
 	} else {
 		toggleShake(leftBtn);
-		setTimeout(() => {
-			toggleShake(leftBtn);
-		}, 500);
 	}
 }
 
@@ -234,9 +231,6 @@ function selectRight() {
 		appendData(currWeapon);
 	} else {
 		toggleShake(rightBtn);
-		setTimeout(() => {
-			toggleShake(rightBtn);
-		}, 500);
 	}
 }
 
@@ -292,9 +286,6 @@ function shootOne() {
 		shoot();
 	} else {
 		toggleShake(singleBtn);
-		setTimeout(() => {
-			toggleShake(singleBtn);
-		}, 500);
 	}
 }
 
@@ -335,9 +326,6 @@ function reload() {
 		}, 200);
 	} else {
 		toggleShake(reloadBtn);
-		setTimeout(() => {
-			toggleShake(reloadBtn);
-		}, 500);
 	}
 }
 
@@ -350,6 +338,9 @@ const shootAll = () => {
 
 function toggleShake(el) {
 	el.classList.toggle('shake');
+	setTimeout(() => {
+		el.classList.toggle('shake');
+	}, 500);
 }
 
 function toggleClass(el, className) {
