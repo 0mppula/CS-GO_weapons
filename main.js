@@ -1,9 +1,9 @@
 // App Initial State
 const appLoaded = () => {
 	currWeapon = allWeapons[0];
-	output.innerHTML = currWeapon.capacity;
-	weaponTitle.innerHTML = currWeapon.name;
-	weaponContainer.setAttribute('src', currWeapon.images.inActive);
+	updateAmmo(currWeapon.capacity);
+	updateWeaponTitle(currWeapon.name);
+	updateWeapon(currWeapon.images.inActive);
 	shootAll(); /* silently shoot all */
 };
 
@@ -25,17 +25,17 @@ class Weapon {
 			special: special,
 		};
 	}
-	fireSFX(volume) {
+	shoot(volume) {
 		let fireSound = new Audio(this.audio.fire);
 		fireSound.play();
 		fireSound.volume = volume;
 	}
-	reloadSFX(volume) {
+	reload(volume) {
 		let reloadSound = new Audio(this.audio.fill);
 		reloadSound.play();
 		reloadSound.volume = volume;
 	}
-	drawSFX(volume) {
+	draw(volume) {
 		let drawSound = new Audio(this.audio.draw);
 		drawSound.play();
 		drawSound.volume = volume;
@@ -184,7 +184,6 @@ const allWeapons = [
 // Variables
 const leftBtn = document.querySelector('.select-left');
 const rightBtn = document.querySelector('.select-right');
-const weaponTitle = document.querySelector('.weapon-title');
 const output = document.getElementById('output');
 const singleBtn = document.querySelector('.single');
 const multiBtn = document.querySelector('.multiple');
@@ -243,41 +242,39 @@ function selectRight() {
 
 // Selector Logic
 function appendData(currWeapon) {
-	weaponContainer.setAttribute(
-		'src',
-		currWeapon.images.inActive
-	); /* returns non shooting image */
+	updateWeapon(currWeapon.images.inActive);
+	/* returns non shooting image */
 	toggleClass(weaponContainer, 'select-weapon'); /* select animation */
-	weaponTitle.innerHTML = currWeapon.name; /* returns weapon title */
-	output.innerHTML = currWeapon.ammo; /* returns weapon ammo capacity title */
+	updateWeaponTitle(currWeapon.name); /* returns weapon title */
+	updateAmmo(currWeapon.ammo); /* returns weapon ammo capacity title */
 	setTimeout(() => {
 		toggleClass(weaponContainer, 'select-weapon'); /* remove select animation */
 	}, 300);
 	/* Audio */
-	currWeapon.drawSFX(0.1);
+	currWeapon.draw(0.1);
 }
 
 // Shooting Logic
 function shoot() {
 	if (currWeapon.ammo > 0) {
 		currWeapon.ammo--;
-		output.innerHTML = currWeapon.ammo;
-		weaponContainer.setAttribute('src', currWeapon.images.active); // sets img src value (shooting)
+		updateAmmo(currWeapon.ammo);
+		updateWeapon(currWeapon.images.active); // sets img src value (shooting)
 		toggleClass(weaponContainer, 'shooting');
 		/* condition for weapon with fire rate < 100ms (slow)*/
 		if (currWeapon.firerate > 100) {
 			setTimeout(() => {
-				weaponContainer.setAttribute('src', currWeapon.images.inActive);
+				updateWeapon(currWeapon.images.inActive);
 				toggleClass(weaponContainer, 'shooting');
-				currWeapon.fireSFX(0.05);
+				currWeapon.shoot(0.05);
 			}, 100);
 			/* condition for weapon with fire rate < 100ms (fast)*/
 		} else if (currWeapon.firerate <= 100) {
 			setTimeout(() => {
-				weaponContainer.setAttribute('src', currWeapon.images.inActive); // sets img src value (not shooting)
+				updateWeapon(currWeapon.images.inActive); // sets img src value (not shooting)
 				toggleClass(weaponContainer, 'shooting');
 				/* Audio */
-				currWeapon.fireSFX(0.05);
+				currWeapon.shoot(0.05);
 			}, currWeapon.firerate - 50);
 		}
 	} else {
@@ -329,10 +326,10 @@ function shootMulti() {
 function reload() {
 	if (!isShooting) {
 		currWeapon.ammo = currWeapon.capacity;
-		output.innerHTML = currWeapon.ammo;
+		updateAmmo(currWeapon.ammo);
 		output.classList.toggle('ammo-reloaded');
 		/* Audio */
-		currWeapon.reloadSFX(0.1);
+		currWeapon.reload(0.1);
 		setTimeout(() => {
 			output.classList.toggle('ammo-reloaded');
 		}, 200);
@@ -357,4 +354,17 @@ function toggleShake(el) {
 
 function toggleClass(el, className) {
 	el.classList.toggle(className);
+}
+
+function updateWeapon(weapon) {
+	weaponContainer.setAttribute('src', weapon);
+}
+
+function updateAmmo(ammo) {
+	output.innerHTML = ammo;
+}
+
+function updateWeaponTitle(newTitle) {
+	let weaponTitle = document.querySelector('.weapon-title');
+	weaponTitle.innerHTML = newTitle;
 }
