@@ -215,9 +215,9 @@ function selectLeft() {
 		currWeapon = allWeapons[index];
 		appendData(currWeapon);
 	} else {
-		leftBtn.classList.toggle('shake');
+		toggleShake(leftBtn);
 		setTimeout(() => {
-			leftBtn.classList.toggle('shake');
+			toggleShake(leftBtn);
 		}, 500);
 	}
 }
@@ -234,9 +234,9 @@ function selectRight() {
 		currWeapon = allWeapons[index];
 		appendData(currWeapon);
 	} else {
-		rightBtn.classList.toggle('shake');
+		toggleShake(rightBtn);
 		setTimeout(() => {
-			rightBtn.classList.toggle('shake');
+			toggleShake(rightBtn);
 		}, 500);
 	}
 }
@@ -247,11 +247,11 @@ function appendData(currWeapon) {
 		'src',
 		currWeapon.images.inActive
 	); /* returns non shooting image */
-	weaponContainer.classList.toggle('select-weapon'); /* select animation */
+	toggleClass(weaponContainer, 'select-weapon'); /* select animation */
 	weaponTitle.innerHTML = currWeapon.name; /* returns weapon title */
 	output.innerHTML = currWeapon.ammo; /* returns weapon ammo capacity title */
 	setTimeout(() => {
-		weaponContainer.classList.toggle('select-weapon'); /* remove select animation */
+		toggleClass(weaponContainer, 'select-weapon'); /* remove select animation */
 	}, 300);
 	/* Audio */
 	currWeapon.drawSFX(0.1);
@@ -263,28 +263,28 @@ function shoot() {
 		currWeapon.ammo--;
 		output.innerHTML = currWeapon.ammo;
 		weaponContainer.setAttribute('src', currWeapon.images.active); // sets img src value (shooting)
-		weaponContainer.classList.toggle('shooting');
+		toggleClass(weaponContainer, 'shooting');
 		/* condition for weapon with fire rate < 100ms (slow)*/
 		if (currWeapon.firerate > 100) {
 			setTimeout(() => {
 				weaponContainer.setAttribute('src', currWeapon.images.inActive);
-				weaponContainer.classList.toggle('shooting');
+				toggleClass(weaponContainer, 'shooting');
 				currWeapon.fireSFX(0.05);
 			}, 100);
 			/* condition for weapon with fire rate < 100ms (fast)*/
 		} else if (currWeapon.firerate <= 100) {
 			setTimeout(() => {
 				weaponContainer.setAttribute('src', currWeapon.images.inActive); // sets img src value (not shooting)
-				weaponContainer.classList.toggle('shooting');
+				toggleClass(weaponContainer, 'shooting');
 				/* Audio */
 				currWeapon.fireSFX(0.05);
 			}, currWeapon.firerate - 50);
 		}
 	} else {
 		currWeapon.ammo = 0;
-		output.classList.toggle('ammo-empty');
+		toggleClass(output, 'ammo-empty');
 		setTimeout(() => {
-			output.classList.toggle('ammo-empty');
+			toggleClass(output, 'ammo-empty');
 		}, 200);
 	}
 }
@@ -294,9 +294,9 @@ function shootOne() {
 	if (!isShooting) {
 		shoot();
 	} else {
-		singleBtn.classList.toggle('shake');
+		toggleShake(singleBtn);
 		setTimeout(() => {
-			singleBtn.classList.toggle('shake');
+			toggleShake(singleBtn);
 		}, 500);
 	}
 }
@@ -317,9 +317,10 @@ function shootMulti() {
 			}, currWeapon.firerate * i);
 		}
 	} else {
-		output.classList.toggle('ammo-empty');
+		toggleClass(output, 'ammo-empty');
+
 		setTimeout(() => {
-			output.classList.toggle('ammo-empty');
+			toggleClass(output, 'ammo-empty');
 		}, 200);
 	}
 }
@@ -336,9 +337,9 @@ function reload() {
 			output.classList.toggle('ammo-reloaded');
 		}, 200);
 	} else {
-		reloadBtn.classList.toggle('shake');
+		toggleShake(reloadBtn);
 		setTimeout(() => {
-			reloadBtn.classList.toggle('shake');
+			toggleShake(reloadBtn);
 		}, 500);
 	}
 }
@@ -349,3 +350,11 @@ const shootAll = () => {
 		weapon.preloadData();
 	});
 };
+
+function toggleShake(el) {
+	el.classList.toggle('shake');
+}
+
+function toggleClass(el, className) {
+	el.classList.toggle(className);
+}
