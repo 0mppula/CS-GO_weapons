@@ -206,11 +206,7 @@ window.addEventListener('load', appLoaded);
 function selectLeft() {
 	if (!isShooting) {
 		shootAll();
-		if (index > 0) {
-			index--;
-		} else {
-			index = allWeapons.length - 1;
-		}
+		index > 0 ? index-- : (index = allWeapons.length - 1);
 		currWeapon = allWeapons[index];
 		appendData(currWeapon);
 	} else {
@@ -222,11 +218,7 @@ function selectLeft() {
 function selectRight() {
 	if (!isShooting) {
 		shootAll();
-		if (index < allWeapons.length - 1) {
-			index++;
-		} else {
-			index = 0;
-		}
+		index < allWeapons.length - 1 ? index++ : (index = 0);
 		currWeapon = allWeapons[index];
 		appendData(currWeapon);
 	} else {
