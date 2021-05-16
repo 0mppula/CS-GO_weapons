@@ -246,24 +246,8 @@ function shoot() {
 		updateAmmo(currWeapon.ammo);
 		updateWeapon(currWeapon.images.active); // sets img src value (shooting)
 		toggleClass(weaponContainer, 'shooting');
-		/* condition for weapon with fire rate < 100ms (slow)*/
-		if (currWeapon.firerate > 100) {
-			setTimeout(() => {
-				updateWeapon(currWeapon.images.inActive);
-				toggleClass(weaponContainer, 'shooting');
-				currWeapon.shoot(0.05);
-			}, 100);
-			/* condition for weapon with fire rate < 100ms (fast)*/
-		} else if (currWeapon.firerate <= 100) {
-			setTimeout(() => {
-				updateWeapon(currWeapon.images.inActive); // sets img src value (not shooting)
-				toggleClass(weaponContainer, 'shooting');
-				/* Audio */
-				currWeapon.shoot(0.05);
-			}, currWeapon.firerate - 50);
-		}
+		shootWeapon();
 	} else {
-		currWeapon.ammo = 0;
 		toggleNoAmmo();
 	}
 }
@@ -287,9 +271,7 @@ function shootMulti() {
 			setTimeout(() => {
 				shoot();
 				shots++;
-				if (shots === ammo) {
-					isShooting = false;
-				}
+				shots === ammo ? (isShooting = false) : isShooting;
 			}, currWeapon.firerate * i);
 		}
 	} else {
@@ -357,4 +339,13 @@ function updateMultiBtn() {
 	} else {
 		multiBtn.innerHTML = `shoot ${10}`;
 	}
+}
+
+function shootWeapon() {
+	let delayTime = currWeapon.firerate < 100 ? currWeapon.firerate - 50 : 100;
+	setTimeout(() => {
+		updateWeapon(currWeapon.images.inActive);
+		toggleClass(weaponContainer, 'shooting');
+		currWeapon.shoot(0.05);
+	}, delayTime);
 }
