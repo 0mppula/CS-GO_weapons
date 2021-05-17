@@ -238,13 +238,20 @@ function appendData(currWeapon) {
 }
 
 // Shooting Logic
-function shoot() {
-	if (currWeapon.ammo > 0) {
-		currWeapon.ammo--;
-		updateAmmo(currWeapon.ammo);
-		updateWeapon(currWeapon.images.active); // sets img src value (shooting)
-		toggleClass(weaponContainer, 'shooting');
-		shootWeapon();
+function shoot(shots) {
+	let ammo = shots;
+	if (currWeapon.ammo > 0 && isShooting === false) {
+		for (let i = 0; i < shots; i++) {
+			setTimeout(() => {
+				currWeapon.ammo--;
+				ammo--;
+				updateAmmo(currWeapon.ammo);
+				updateWeapon(currWeapon.images.active); // sets img src value (shooting)
+				toggleClass(weaponContainer, 'shooting');
+				shootWeapon();
+				ammo == 0 ? (isShooting = false) : (isShooting = true);
+			}, i * currWeapon.firerate);
+		}
 	} else {
 		toggleNoAmmo();
 	}
@@ -252,29 +259,14 @@ function shoot() {
 
 // Shoot Once
 function shootOne() {
-	if (!isShooting) {
-		shoot();
-	} else {
-		toggleShake(singleBtn);
-	}
+	currWeapon.ammo == 0 ? toggleShake(singleBtn) : null;
+	isShooting == false ? shoot(1) : toggleShake(singleBtn);
 }
 
 // Shoot Multiple Times
 function shootMulti() {
-	let shots = 0;
-	if (currWeapon.ammo > 0 && isShooting === false) {
-		let ammo = currWeapon.ammo > 10 ? 10 : currWeapon.ammo;
-		for (i = 0; i < ammo; i++) {
-			isShooting = true;
-			setTimeout(() => {
-				shoot();
-				shots++;
-				shots === ammo ? (isShooting = false) : isShooting;
-			}, currWeapon.firerate * i);
-		}
-	} else {
-		toggleNoAmmo();
-	}
+	let ammo = currWeapon.ammo > 10 ? 10 : currWeapon.ammo;
+	ammo != 0 ? shoot(ammo) : (toggleShake(multiBtn), toggleNoAmmo());
 }
 
 // Reload Weapon Function
