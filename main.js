@@ -9,7 +9,7 @@ const appLoaded = () => {
 
 // Weapons Object
 class Weapon {
-	constructor(name, capacity, ammo, firerate, inActive, active, fire, fill, draw, special) {
+	constructor(name, capacity, ammo, firerate, inActive, active, fire, fill, draw) {
 		this.name = name;
 		this.capacity = capacity;
 		this.ammo = ammo;
@@ -22,7 +22,6 @@ class Weapon {
 			fire: fire,
 			fill: fill,
 			draw: draw,
-			special: special,
 		};
 	}
 	shoot(volume) {
@@ -184,25 +183,24 @@ const allWeapons = [
 // Variables
 const leftBtn = document.querySelector('.select-left');
 const rightBtn = document.querySelector('.select-right');
-const output = document.getElementById('output');
 const singleBtn = document.querySelector('.single');
 const multiBtn = document.querySelector('.multiple');
 const reloadBtn = document.querySelector('.reload');
+const output = document.getElementById('output');
 const weaponContainer = document.querySelector('.weapon-wrapper img');
 let currWeapon;
 let index = 0;
 let isShooting = false;
 
 // Event Listeners
-rightBtn.addEventListener('click', selectRight);
 leftBtn.addEventListener('click', selectLeft);
+rightBtn.addEventListener('click', selectRight);
 singleBtn.addEventListener('click', shootOne);
 multiBtn.addEventListener('click', shootMulti);
 reloadBtn.addEventListener('click', reload);
 window.addEventListener('load', appLoaded);
 
 // Select Current Weapon
-// Right Direction
 function selectLeft() {
 	if (!isShooting) {
 		shootAll();
@@ -214,7 +212,6 @@ function selectLeft() {
 	}
 }
 
-// Left Direction
 function selectRight() {
 	if (!isShooting) {
 		shootAll();
@@ -256,7 +253,6 @@ function shoot(shots) {
 // Shoot Once
 function shootOne() {
 	let ammo = currWeapon.ammo;
-	// ammo <= 0 ? (toggleShake(singleBtn), toggleNoAmmo()) : null;
 	ammo <= 0 && (toggleShake(singleBtn), toggleNoAmmo());
 	!isShooting ? shoot(ammo) : toggleShake(singleBtn);
 }
@@ -281,12 +277,39 @@ function reload() {
 	}
 }
 
-/* Shoot all silently */
-const shootAll = () => {
-	allWeapons.forEach((weapon) => {
-		weapon.preloadData();
-	});
-};
+function shootWeapon() {
+	let delayTime = currWeapon.firerate < 100 ? currWeapon.firerate - 50 : 100;
+	setTimeout(() => {
+		updateWeapon(currWeapon.images.inActive);
+		toggleClass(weaponContainer, 'shooting');
+		currWeapon.shoot(0.05);
+	}, delayTime);
+}
+
+function updateWeapon(weapon) {
+	weaponContainer.setAttribute('src', weapon);
+}
+
+function updateWeaponTitle(newTitle) {
+	let weaponTitle = document.querySelector('.weapon-title');
+	weaponTitle.innerHTML = newTitle;
+}
+
+function updateAmmo(ammo) {
+	output.innerHTML = ammo;
+}
+
+function updateMultiBtn() {
+	if (currWeapon.capacity < 10) {
+		multiBtn.innerHTML = `shoot ${currWeapon.capacity}`;
+	} else {
+		multiBtn.innerHTML = `shoot ${10}`;
+	}
+}
+
+function toggleClass(el, className) {
+	el.classList.toggle(className);
+}
 
 function toggleShake(el) {
 	el.classList.toggle('shake');
@@ -298,36 +321,7 @@ function toggleNoAmmo() {
 	setTimeout(() => output.classList.toggle('ammo-empty'), 200);
 }
 
-function toggleClass(el, className) {
-	el.classList.toggle(className);
-}
-
-function updateWeapon(weapon) {
-	weaponContainer.setAttribute('src', weapon);
-}
-
-function updateAmmo(ammo) {
-	output.innerHTML = ammo;
-}
-
-function updateWeaponTitle(newTitle) {
-	let weaponTitle = document.querySelector('.weapon-title');
-	weaponTitle.innerHTML = newTitle;
-}
-
-function updateMultiBtn() {
-	if (currWeapon.capacity < 10) {
-		multiBtn.innerHTML = `shoot ${currWeapon.capacity}`;
-	} else {
-		multiBtn.innerHTML = `shoot ${10}`;
-	}
-}
-
-function shootWeapon() {
-	let delayTime = currWeapon.firerate < 100 ? currWeapon.firerate - 50 : 100;
-	setTimeout(() => {
-		updateWeapon(currWeapon.images.inActive);
-		toggleClass(weaponContainer, 'shooting');
-		currWeapon.shoot(0.05);
-	}, delayTime);
-}
+/* Shoot all silently */
+const shootAll = () => {
+	allWeapons.forEach((weapon) => weapon.preloadData());
+};
