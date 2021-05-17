@@ -233,10 +233,8 @@ function appendData(currWeapon) {
 	toggleClass(weaponContainer, 'select-weapon'); /* draw animation */
 	updateWeaponTitle(currWeapon.name);
 	updateAmmo(currWeapon.ammo);
-	setTimeout(() => {
-		toggleClass(weaponContainer, 'select-weapon'); /* remove draw animation */
-	}, 300);
 	currWeapon.draw(0.1);
+	setTimeout(() => toggleClass(weaponContainer, 'select-weapon'), 300);
 }
 
 // Shooting Logic
@@ -285,11 +283,8 @@ function reload() {
 		currWeapon.ammo = currWeapon.capacity;
 		updateAmmo(currWeapon.ammo);
 		output.classList.toggle('ammo-reloaded');
-		/* Audio */
 		currWeapon.reload(0.1);
-		setTimeout(() => {
-			output.classList.toggle('ammo-reloaded');
-		}, 200);
+		setTimeout(() => output.classList.toggle('ammo-reloaded'), 200);
 	} else {
 		toggleShake(reloadBtn);
 	}
@@ -304,16 +299,12 @@ const shootAll = () => {
 
 function toggleShake(el) {
 	el.classList.toggle('shake');
-	setTimeout(() => {
-		el.classList.toggle('shake');
-	}, 500);
+	setTimeout(() => el.classList.toggle('shake'), 500);
 }
 
 function toggleNoAmmo() {
 	output.classList.toggle('ammo-empty');
-	setTimeout(() => {
-		output.classList.toggle('ammo-empty');
-	}, 200);
+	setTimeout(() => output.classList.toggle('ammo-empty'), 200);
 }
 
 function toggleClass(el, className) {
