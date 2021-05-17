@@ -161,8 +161,7 @@ const weapon10 = new Weapon(
 	'images/shooting_p90.png',
 	'audio/p90_fire.wav',
 	'audio/p90_fill.wav',
-	'audio/p90_draw.wav',
-	'audio/cyka_blyat.wav'
+	'audio/p90_draw.wav'
 );
 // End Weapon Instantiations
 
