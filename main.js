@@ -252,8 +252,8 @@ function shoot(shots) {
 // Shoot Once
 function shootOne() {
 	let ammo = currWeapon.ammo;
-	ammo <= 0 && (toggleShake(singleBtn), toggleNoAmmo());
-	!isShooting ? shoot(1) : toggleShake(singleBtn);
+	ammo <= 0 && toggleNoAmmo();
+	!isShooting && ammo != 0 ? shoot(1) : toggleShake(singleBtn);
 }
 
 // Shoot Multiple Times
