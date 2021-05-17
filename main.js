@@ -47,9 +47,9 @@ class Weapon {
 		let drawSound = new Audio();
 		drawSound.src = this.audio.draw;
 		let imgInactive = new Image();
-		imgInactive.sec = this.inActive;
+		imgInactive.src = this.images.inActive;
 		let imgActive = new Image();
-		imgActive.sec = this.inActive;
+		imgActive.src = this.images.active;
 	}
 }
 // Weapon Instantiations
