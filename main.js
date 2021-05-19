@@ -205,7 +205,7 @@ function selectLeft() {
 		shootAll();
 		index > 0 ? index-- : (index = allWeapons.length - 1);
 		currWeapon = allWeapons[index];
-		appendData(currWeapon);
+		updateUI(currWeapon);
 	} else {
 		toggleShake(leftBtn);
 	}
@@ -216,14 +216,14 @@ function selectRight() {
 		shootAll();
 		index < allWeapons.length - 1 ? index++ : (index = 0);
 		currWeapon = allWeapons[index];
-		appendData(currWeapon);
+		updateUI(currWeapon);
 	} else {
 		toggleShake(rightBtn);
 	}
 }
 
 // Selector Logic
-function appendData(currWeapon) {
+function updateUI(currWeapon) {
 	updateWeapon(currWeapon.images.inActive);
 	updateMultiBtn();
 	toggleClass(weaponContainer, 'select-weapon'); /* draw animation */
