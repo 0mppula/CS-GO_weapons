@@ -1,0 +1,162 @@
+[
+	{
+		"id": 1,
+		"name": "ak-47",
+		"ammo": 30,
+		"capacity": 30,
+		"fire_rate": 100,
+		"images": {
+			"static": "resources/images/ak47.png",
+			"active": "resources/images/shooting_ak47.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/ak47_fire.wav",
+			"reload": "resources/audio/ak47_fill.wav",
+			"draw": "resources/audio/ak47_draw.wav"
+		}
+	},
+	{
+		"id": 2,
+		"name": "m4a1-s",
+		"ammo": 25,
+		"capacity": 25,
+		"fire_rate": 100,
+		"images": {
+			"static": "resources/images/m4.png",
+			"active": "resources/images/shooting_m4.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/m4_fire.wav",
+			"reload": "resources/audio/m4_fill.wav",
+			"draw": "resources/audio/m4_draw.wav"
+		}
+	},
+	{
+		"id": 3,
+		"name": "galil AR",
+		"ammo": 35,
+		"capacity": 35,
+		"fire_rate": 90,
+		"images": {
+			"static": "resources/images/galil.png",
+			"active": "resources/images/shooting_galil.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/galil_fire.wav",
+			"reload": "resources/audio/galil_fill.wav",
+			"draw": "resources/audio/galil_draw.wav"
+		}
+	},
+	{
+		"id": 4,
+		"name": "famas",
+		"ammo": 25,
+		"capacity": 25,
+		"fire_rate": 90,
+		"images": {
+			"static": "resources/images/famas.png",
+			"active": "resources/images/shooting_famas.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/famas_fire.wav",
+			"reload": "resources/audio/famas_fill.wav",
+			"draw": "resources/audio/famas_draw.wav"
+		}
+	},
+	{
+		"id": 5,
+		"name": "AWP",
+		"ammo": 10,
+		"capacity": 10,
+		"fire_rate": 225,
+		"images": {
+			"static": "resources/images/awp.png",
+			"active": "resources/images/shooting_awp.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/awp_fire.wav",
+			"reload": "resources/audio/awp_fill.wav",
+			"draw": "resources/audio/awp_draw.wav"
+		}
+	},
+	{
+		"id": 6,
+		"name": "mp5-sd",
+		"ammo": 30,
+		"capacity": 30,
+		"fire_rate": 80,
+		"images": {
+			"static": "resources/images/mp5-sd.png",
+			"active": "resources/images/shooting_mp5-sd.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/mp-5_fire.wav",
+			"reload": "resources/audio/mp-5_fill.wav",
+			"draw": "resources/audio/mp-5_draw.wav"
+		}
+	},
+	{
+		"id": 7,
+		"name": "glock-18",
+		"ammo": 20,
+		"capacity": 20,
+		"fire_rate": 150,
+		"images": {
+			"static": "resources/images/glock.png",
+			"active": "resources/images/shooting_glock.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/glock_fire.wav",
+			"reload": "resources/audio/glock_fill.wav",
+			"draw": "resources/audio/glock_draw.wav"
+		}
+	},
+	{
+		"id": 8,
+		"name": "usp-s",
+		"ammo": 12,
+		"capacity": 12,
+		"fire_rate": 170,
+		"images": {
+			"static": "resources/images/usp.png",
+			"active": "resources/images/shooting_usp.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/usp_fire.wav",
+			"reload": "resources/audio/usp_fill.wav",
+			"draw": "resources/audio/usp_draw.wav"
+		}
+	},
+	{
+		"id": 9,
+		"name": "desert eagle",
+		"ammo": 7,
+		"capacity": 7,
+		"fire_rate": 225,
+		"images": {
+			"static": "resources/images/deagle.png",
+			"active": "resources/images/shooting_deagle.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/deagle_fire.wav",
+			"reload": "resources/audio/deagle_fill.wav",
+			"draw": "resources/audio/deagle_draw.wav"
+		}
+	},
+	{
+		"id": 10,
+		"name": "p90",
+		"ammo": 50,
+		"capacity": 50,
+		"fire_rate": 70,
+		"images": {
+			"static": "resources/images/p90.png",
+			"active": "resources/images/shooting_p90.png"
+		},
+		"audio": {
+			"shoot": "resources/audio/p90_fire.wav",
+			"reload": "resources/audio/p90_fill.wav",
+			"draw": "resources/audio/p90_draw.wav"
+		}
+	}
+]
