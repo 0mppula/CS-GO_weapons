@@ -1,11 +1,50 @@
 // App Initial State
 const appLoaded = () => {
-	currWeapon = allWeapons[0];
-	updateAmmo(currWeapon.capacity);
-	updateWeaponTitle(currWeapon.name);
-	updateWeapon(currWeapon.images.inActive);
-	shootAll(); /* silently shoot all */
+	getdata();
+	setTimeout(() => {
+		currWeapon = allWeapons[0];
+		updateAmmo(currWeapon.capacity);
+		updateWeaponTitle(currWeapon.name);
+		updateWeapon(currWeapon.images.inActive);
+		shootAll(); /* silently shoot all */
+	}, 500);
 };
+
+// AJAX requet
+function getdata() {
+	let xhr = new XMLHttpRequest();
+
+	xhr.open('GET', './resources/data/weapons.json', true);
+	xhr.onload = function () {
+		if (this.status == 200) {
+			let response = this.responseText;
+			instantiateWeapons(response);
+		} else {
+			console.log('error');
+		}
+	};
+	xhr.send();
+}
+
+function instantiateWeapons(response) {
+	let weapons = JSON.parse(response);
+	weapons.forEach((weapon) => {
+		let newWeapon = new Weapon(
+			weapon.name,
+			weapon.capacity,
+			weapon.ammo,
+			weapon.fire_rate,
+			weapon.images.static,
+			weapon.images.active,
+			weapon.audio.shoot,
+			weapon.audio.reload,
+			weapon.audio.draw
+		);
+		allWeapons.push(newWeapon);
+	});
+}
+
+const allWeapons = [];
 
 // Weapons Object
 class Weapon {
@@ -52,132 +91,6 @@ class Weapon {
 		imgActive.src = this.images.active;
 	}
 }
-// Weapon Instantiations
-const weapon1 = new Weapon(
-	'ak-47',
-	30,
-	30,
-	100,
-	'resources/images/ak47.png',
-	'resources/images/shooting_ak47.png',
-	'resources/audio/ak47_fire.wav',
-	'resources/audio/ak47_fill.wav',
-	'resources/audio/ak47_draw.wav'
-);
-const weapon2 = new Weapon(
-	'm4a1-s',
-	25,
-	25,
-	100,
-	'resources/images/m4.png',
-	'resources/images/shooting_m4.png',
-	'resources/audio/m4_fire.wav',
-	'resources/audio/m4_fill.wav',
-	'resources/audio/m4_draw.wav'
-);
-const weapon3 = new Weapon(
-	'galil AR',
-	35,
-	35,
-	90,
-	'resources/images/galil.png',
-	'resources/images/shooting_galil.png',
-	'resources/audio/galil_fire.wav',
-	'resources/audio/galil_fill.wav',
-	'resources/audio/galil_draw.wav'
-);
-const weapon4 = new Weapon(
-	'famas',
-	25,
-	25,
-	90,
-	'resources/images/famas.png',
-	'resources/images/shooting_famas.png',
-	'resources/audio/famas_fire.wav',
-	'resources/audio/famas_fill.wav',
-	'resources/audio/famas_draw.wav'
-);
-const weapon5 = new Weapon(
-	'AWP',
-	10,
-	10,
-	225,
-	'resources/images/awp.png',
-	'resources/images/shooting_awp.png',
-	'resources/audio/awp_fire.wav',
-	'resources/audio/awp_fill.wav',
-	'resources/audio/awp_draw.wav'
-);
-const weapon6 = new Weapon(
-	'mp5-sd',
-	30,
-	30,
-	80,
-	'resources/images/mp5-sd.png',
-	'resources/images/shooting_mp5-sd.png',
-	'resources/audio/mp-5_fire.wav',
-	'resources/audio/mp-5_fill.wav',
-	'resources/audio/mp-5_draw.wav'
-);
-const weapon7 = new Weapon(
-	'glock-18',
-	20,
-	20,
-	150,
-	'resources/images/glock.png',
-	'resources/images/shooting_glock.png',
-	'resources/audio/glock_fire.wav',
-	'resources/audio/glock_fill.wav',
-	'resources/audio/glock_draw.wav'
-);
-const weapon8 = new Weapon(
-	'usp-s',
-	12,
-	12,
-	170,
-	'resources/images/usp.png',
-	'resources/images/shooting_usp.png',
-	'resources/audio/usp_fire.wav',
-	'resources/audio/usp_fill.wav',
-	'resources/audio/usp_draw.wav'
-);
-const weapon9 = new Weapon(
-	'desert eagle',
-	7,
-	7,
-	225,
-	'resources/images/deagle.png',
-	'resources/images/shooting_deagle.png',
-	'resources/audio/deagle_fire.wav',
-	'resources/audio/deagle_fill.wav',
-	'resources/audio/deagle_draw.wav'
-);
-const weapon10 = new Weapon(
-	'p90',
-	50,
-	50,
-	70,
-	'resources/images/p90.png',
-	'resources/images/shooting_p90.png',
-	'resources/audio/p90_fire.wav',
-	'resources/audio/p90_fill.wav',
-	'resources/audio/p90_draw.wav'
-);
-// End Weapon Instantiations
-
-// All Weapons Array
-const allWeapons = [
-	weapon1,
-	weapon2,
-	weapon3,
-	weapon4,
-	weapon5,
-	weapon6,
-	weapon7,
-	weapon8,
-	weapon9,
-	weapon10,
-];
 
 // Variables
 const leftBtn = document.querySelector('.select-left');
