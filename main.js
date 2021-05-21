@@ -58,110 +58,110 @@ const weapon1 = new Weapon(
 	30,
 	30,
 	100,
-	'images/ak47.png',
-	'images/shooting_ak47.png',
-	'audio/ak47_fire.wav',
-	'audio/ak47_fill.wav',
-	'audio/ak47_draw.wav'
+	'resources/images/ak47.png',
+	'resources/images/shooting_ak47.png',
+	'resources/audio/ak47_fire.wav',
+	'resources/audio/ak47_fill.wav',
+	'resources/audio/ak47_draw.wav'
 );
 const weapon2 = new Weapon(
 	'm4a1-s',
 	25,
 	25,
 	100,
-	'images/m4.png',
-	'images/shooting_m4.png',
-	'audio/m4_fire.wav',
-	'audio/m4_fill.wav',
-	'audio/m4_draw.wav'
+	'resources/images/m4.png',
+	'resources/images/shooting_m4.png',
+	'resources/audio/m4_fire.wav',
+	'resources/audio/m4_fill.wav',
+	'resources/audio/m4_draw.wav'
 );
 const weapon3 = new Weapon(
 	'galil AR',
 	35,
 	35,
 	90,
-	'images/galil.png',
-	'images/shooting_galil.png',
-	'audio/galil_fire.wav',
-	'audio/galil_fill.wav',
-	'audio/galil_draw.wav'
+	'resources/images/galil.png',
+	'resources/images/shooting_galil.png',
+	'resources/audio/galil_fire.wav',
+	'resources/audio/galil_fill.wav',
+	'resources/audio/galil_draw.wav'
 );
 const weapon4 = new Weapon(
 	'famas',
 	25,
 	25,
 	90,
-	'images/famas.png',
-	'images/shooting_famas.png',
-	'audio/famas_fire.wav',
-	'audio/famas_fill.wav',
-	'audio/famas_draw.wav'
+	'resources/images/famas.png',
+	'resources/images/shooting_famas.png',
+	'resources/audio/famas_fire.wav',
+	'resources/audio/famas_fill.wav',
+	'resources/audio/famas_draw.wav'
 );
 const weapon5 = new Weapon(
 	'AWP',
 	10,
 	10,
 	225,
-	'images/awp1.png',
-	'images/shooting_awp1.png',
-	'audio/awp_fire.wav',
-	'audio/awp_fill.wav',
-	'audio/awp_draw.wav'
+	'resources/images/awp.png',
+	'resources/images/shooting_awp.png',
+	'resources/audio/awp_fire.wav',
+	'resources/audio/awp_fill.wav',
+	'resources/audio/awp_draw.wav'
 );
 const weapon6 = new Weapon(
 	'mp5-sd',
 	30,
 	30,
 	80,
-	'images/mp5-sd.png',
-	'images/shooting_mp5-sd.png',
-	'audio/mp-5_fire.wav',
-	'audio/mp-5_fill.wav',
-	'audio/mp-5_draw.wav'
+	'resources/images/mp5-sd.png',
+	'resources/images/shooting_mp5-sd.png',
+	'resources/audio/mp-5_fire.wav',
+	'resources/audio/mp-5_fill.wav',
+	'resources/audio/mp-5_draw.wav'
 );
 const weapon7 = new Weapon(
 	'glock-18',
 	20,
 	20,
 	150,
-	'images/glock.png',
-	'images/shooting_glock.png',
-	'audio/glock_fire.wav',
-	'audio/glock_fill.wav',
-	'audio/glock_draw.wav'
+	'resources/images/glock.png',
+	'resources/images/shooting_glock.png',
+	'resources/audio/glock_fire.wav',
+	'resources/audio/glock_fill.wav',
+	'resources/audio/glock_draw.wav'
 );
 const weapon8 = new Weapon(
 	'usp-s',
 	12,
 	12,
 	170,
-	'images/usp.png',
-	'images/shooting_usp.png',
-	'audio/usp_fire.wav',
-	'audio/usp_fill.wav',
-	'audio/usp_draw.wav'
+	'resources/images/usp.png',
+	'resources/images/shooting_usp.png',
+	'resources/audio/usp_fire.wav',
+	'resources/audio/usp_fill.wav',
+	'resources/audio/usp_draw.wav'
 );
 const weapon9 = new Weapon(
 	'desert eagle',
 	7,
 	7,
 	225,
-	'images/deagle.png',
-	'images/shooting_deagle.png',
-	'audio/deagle_fire.wav',
-	'audio/deagle_fill.wav',
-	'audio/deagle_draw.wav'
+	'resources/images/deagle.png',
+	'resources/images/shooting_deagle.png',
+	'resources/audio/deagle_fire.wav',
+	'resources/audio/deagle_fill.wav',
+	'resources/audio/deagle_draw.wav'
 );
 const weapon10 = new Weapon(
 	'p90',
 	50,
 	50,
 	70,
-	'images/p90.png',
-	'images/shooting_p90.png',
-	'audio/p90_fire.wav',
-	'audio/p90_fill.wav',
-	'audio/p90_draw.wav'
+	'resources/images/p90.png',
+	'resources/images/shooting_p90.png',
+	'resources/audio/p90_fire.wav',
+	'resources/audio/p90_fill.wav',
+	'resources/audio/p90_draw.wav'
 );
 // End Weapon Instantiations
 
