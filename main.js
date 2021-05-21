@@ -1,27 +1,27 @@
 // App Initial State
-const appLoaded = () => {
-	getdata();
-	setTimeout(() => {
-		currWeapon = allWeapons[0];
-		updateAmmo(currWeapon.capacity);
-		updateWeaponTitle(currWeapon.name);
-		updateWeapon(currWeapon.images.inActive);
-		shootAll(); /* silently shoot all */
-	}, 500);
+const initApp = (response) => {
+	instantiateWeapons(response);
+	currWeapon = allWeapons[0];
+	updateAmmo(currWeapon.capacity);
+	updateWeaponTitle(currWeapon.name);
+	updateWeapon(currWeapon.images.inActive);
+	shootAll(); /* silently shoot all */
 };
 
 // AJAX requet
-function getdata() {
+function getData() {
 	let xhr = new XMLHttpRequest();
 
 	xhr.open('GET', './resources/data/weapons.json', true);
-	xhr.onload = function () {
-		if (this.status == 200) {
+	xhr.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
 			let response = this.responseText;
-			instantiateWeapons(response);
-		} else {
-			console.log('error');
+			initApp(response);
 		}
+	};
+
+	xhr.onerror = function () {
+		console.log('AJAX Request failed');
 	};
 	xhr.send();
 }
@@ -110,7 +110,7 @@ rightBtn.addEventListener('click', selectRight);
 singleBtn.addEventListener('click', shootOne);
 multiBtn.addEventListener('click', shootMulti);
 reloadBtn.addEventListener('click', reload);
-window.addEventListener('load', appLoaded);
+window.addEventListener('load', getData);
 
 // Select Current Weapon
 function selectLeft() {
