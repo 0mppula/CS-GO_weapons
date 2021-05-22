@@ -21,7 +21,7 @@ function getData() {
 	};
 
 	xhr.onerror = function () {
-		console.log('AJAX Request failed');
+		console.log(`Error: ${xhr.statusText}`);
 	};
 	xhr.send();
 }
@@ -48,7 +48,7 @@ const allWeapons = [];
 
 // Weapons Object
 class Weapon {
-	constructor(name, capacity, ammo, firerate, inActive, active, fire, fill, draw) {
+	constructor(name, capacity, ammo, firerate, inActive, active, shoot, reload, draw) {
 		this.name = name;
 		this.capacity = capacity;
 		this.ammo = ammo;
@@ -58,18 +58,18 @@ class Weapon {
 			active: active,
 		};
 		this.audio = {
-			fire: fire,
-			fill: fill,
+			shoot: shoot,
+			reload: reload,
 			draw: draw,
 		};
 	}
 	shoot(volume) {
-		let fireSound = new Audio(this.audio.fire);
+		let fireSound = new Audio(this.audio.shoot);
 		fireSound.play();
 		fireSound.volume = volume;
 	}
 	reload(volume) {
-		let reloadSound = new Audio(this.audio.fill);
+		let reloadSound = new Audio(this.audio.reload);
 		reloadSound.play();
 		reloadSound.volume = volume;
 	}
@@ -80,9 +80,9 @@ class Weapon {
 	}
 	preloadData() {
 		let fireSound = new Audio();
-		fireSound.src = this.audio.fire;
+		fireSound.src = this.audio.shoot;
 		let reloadSound = new Audio();
-		reloadSound.src = this.audio.fill;
+		reloadSound.src = this.audio.reload;
 		let drawSound = new Audio();
 		drawSound.src = this.audio.draw;
 		let imgInactive = new Image();
