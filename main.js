@@ -44,8 +44,6 @@ function instantiateWeapons(response) {
 	});
 }
 
-const allWeapons = [];
-
 // Weapons Object
 class Weapon {
 	constructor(name, capacity, ammo, firerate, inActive, active, shoot, reload, draw) {
@@ -100,38 +98,39 @@ const multiBtn = document.querySelector('.multiple');
 const reloadBtn = document.querySelector('.reload');
 const output = document.getElementById('output');
 const weaponContainer = document.querySelector('.weapon-wrapper img');
+const allWeapons = [];
 let currWeapon;
 let index = 0;
 let isShooting = false;
 
 // Event Listeners
-leftBtn.addEventListener('click', selectLeft);
-rightBtn.addEventListener('click', selectRight);
+leftBtn.addEventListener('click', nextWeapon);
+rightBtn.addEventListener('click', nextWeapon);
 singleBtn.addEventListener('click', shootOne);
 multiBtn.addEventListener('click', shootMulti);
 reloadBtn.addEventListener('click', reload);
 window.addEventListener('load', getData);
 
 // Select Current Weapon
-function selectLeft() {
+function nextWeapon(e) {
+	let arrow = e.target.id;
+	arrowDirection = arrow == 'right' ? 1 : -1;
 	if (!isShooting) {
 		shootAll();
-		index > 0 ? index-- : (index = allWeapons.length - 1);
+		index += arrowDirection;
+		checkIndex(arrowDirection);
 		currWeapon = allWeapons[index];
 		updateUI(currWeapon);
 	} else {
-		toggleShake(leftBtn);
+		toggleShake(this);
 	}
 }
 
-function selectRight() {
-	if (!isShooting) {
-		shootAll();
-		index < allWeapons.length - 1 ? index++ : (index = 0);
-		currWeapon = allWeapons[index];
-		updateUI(currWeapon);
-	} else {
-		toggleShake(rightBtn);
+function checkIndex(increment) {
+	if (index > allWeapons.length - 1 && increment == 1) {
+		index = 0;
+	} else if (index < 0 && increment == -1) {
+		index = allWeapons.length - 1;
 	}
 }
 
